@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Design Strategy Checklist: MAIA Creative House</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A08'/%3E%3Ctext x='16' y='23' font-family='Georgia%2C serif' font-size='20' font-weight='400' fill='%23C9A96E' text-anchor='middle' letter-spacing='0'%3EM%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --obsidian: #0A0A08;
+    --gold: #C9A96E;
+    --gold-light: #E8D5A3;
+    --cream: #F5F0E8;
+    --burgundy: #170A0C;
+    --gold-dim: rgba(201,169,110,0.15);
+    --gold-border: rgba(201,169,110,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--obsidian);
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(23,10,12,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,169,110,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 80px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .brand-star { color: var(--gold); font-size: 18px; letter-spacing: 4px; }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Gate */
+  .gate { opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards; }
+
+  .eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .gate h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  .gate h1 em { font-style: italic; color: var(--gold); }
+
+  .gate-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(245,240,232,0.6);
+    max-width: 480px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 32px 0; opacity: 0.5; }
+
+  .preview { margin-bottom: 48px; }
+
+  .preview-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(201,169,110,0.6);
+    margin-bottom: 20px;
+  }
+
+  .preview-items { display: flex; flex-direction: column; gap: 12px; }
+
+  .preview-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 13px;
+    color: rgba(245,240,232,0.75);
+  }
+
+  .preview-item .check { color: var(--gold); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+  /* Form */
+  .form-wrap {
+    background: rgba(201,169,110,0.04);
+    border: 1px solid var(--gold-border);
+    padding: 40px;
+    position: relative;
+  }
+
+  .form-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .form-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .input-group { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  input[type="text"], input[type="email"] {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    padding: 14px 18px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  input::placeholder { color: rgba(245,240,232,0.3); }
+  input:focus { border-color: var(--gold); background: rgba(201,169,110,0.06); }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--gold);
+    color: var(--obsidian);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 18px 32px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border-radius: 0;
+  }
+
+  .submit-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .submit-btn:active { transform: translateY(0); }
+
+  .privacy { font-size: 11px; color: rgba(245,240,232,0.3); margin-top: 16px; line-height: 1.6; }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: rgba(201,169,110,0.1);
+    z-index: 100;
+    display: none;
+  }
+
+  .progress-bar-wrap.visible { display: block; }
+  .progress-bar { height: 100%; background: var(--gold); width: 0%; transition: width 0.4s ease; }
+
+  .progress-label {
+    position: fixed;
+    top: 12px; right: 20px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    z-index: 101;
+    display: none;
+  }
+
+  .progress-label.visible { display: block; }
+
+  /* Checklist */
+  .checklist-wrap { display: none; opacity: 0; animation: fadeUp 0.6s ease forwards; }
+  .checklist-wrap.visible { display: block; }
+
+  .success-header { margin-bottom: 56px; }
+  .success-header .eyebrow { margin-bottom: 16px; }
+
+  .success-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .success-header h2 em { font-style: italic; color: var(--gold); }
+
+  .success-header p {
+    font-size: 13px;
+    color: rgba(245,240,232,0.6);
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  /* Score Panel */
+  .score-panel {
+    background: rgba(201,169,110,0.05);
+    border: 1px solid var(--gold-border);
+    padding: 28px 32px;
+    margin-top: 56px;
+    margin-bottom: 56px;
+    position: relative;
+    transition: all 0.4s ease;
+  }
+
+  .score-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .score-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .score-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .score-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    transition: all 0.3s ease;
+  }
+
+  .score-bar-track {
+    height: 2px;
+    background: rgba(201,169,110,0.15);
+    margin-bottom: 20px;
+  }
+
+  .score-bar-fill {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+
+  .score-message {
+    font-size: 13px;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.7;
+    min-height: 44px;
+    transition: opacity 0.3s ease;
+  }
+
+  .score-message .msg-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .score-message .msg-title em { font-style: italic; color: var(--gold); }
+
+  /* Sections */
+  .checklist-section {
+    margin-bottom: 56px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .checklist-section.revealed { opacity: 1; transform: translateY(0); }
+
+  .section-number {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+
+  .check-items { display: flex; flex-direction: column; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(201,169,110,0.1);
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .check-item:first-child { border-top: 1px solid rgba(201,169,110,0.1); }
+  .check-item:hover { background: rgba(201,169,110,0.03); }
+
+  .checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(201,169,110,0.4);
+    flex-shrink: 0;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+  }
+
+  .check-item.checked .checkbox { background: var(--gold); border-color: var(--gold); }
+
+  .checkmark { display: none; color: var(--obsidian); font-size: 11px; font-weight: 700; }
+  .check-item.checked .checkmark { display: block; }
+
+  .item-content { flex: 1; }
+
+  .item-question {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 6px;
+    transition: color 0.2s ease;
+  }
+
+  .check-item.checked .item-question {
+    color: rgba(245,240,232,0.35);
+    text-decoration: line-through;
+    text-decoration-color: rgba(201,169,110,0.3);
+  }
+
+  /* Stuck prompt */
+  .stuck-prompt {
+    display: none;
+    font-size: 11px;
+    color: var(--gold);
+    font-style: italic;
+    line-height: 1.6;
+    margin-top: 2px;
+    opacity: 0.7;
+    padding: 8px 12px;
+    border-left: 1px solid rgba(201,169,110,0.3);
+    background: rgba(201,169,110,0.04);
+  }
+
+  .check-item:hover .stuck-prompt { display: block; }
+  .check-item.checked .stuck-prompt { display: none; }
+
+  /* CTA */
+  .cta-wrap {
+    margin-top: 80px;
+    padding-top: 56px;
+    border-top: 1px solid var(--gold-border);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+  }
+
+  .cta-wrap.revealed { opacity: 1; transform: translateY(0); }
+
+  .cta-eyebrow {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--gold); }
+
+  .cta-body {
+    font-size: 13px;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.8;
+    max-width: 440px;
+    margin-bottom: 32px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 32px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-btn:hover { background: var(--gold); color: var(--obsidian); }
+
+  /* Footer */
+  .maia-footer {
+    margin-top: 80px;
+    border-top: 1px solid rgba(201,169,110,0.12);
+    padding: 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.25);
+    white-space: nowrap;
+  }
+
+  .footer-center {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.25);
+  }
+
+  .footer-clock {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--cream);
+    opacity: 0.75;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(245,240,232,0.3);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  .footer-social a:hover { color: var(--gold); }
+  .footer-social svg { width: 15px; height: 15px; fill: currentColor; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 60px 24px; }
+    .input-row { grid-template-columns: 1fr; }
+    .form-wrap { padding: 28px 24px; }
+    .maia-footer { flex-direction: column; text-align: center; }
+    .score-panel { padding: 22px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar-wrap" id="progressWrap">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="progress-label" id="progressLabel"></div>
+
+<div class="container">
+
+  <div class="brand">
+    <span class="brand-star">✦</span>
+    <span class="brand-name">MAIA Creative House</span>
+  </div>
+
+  <!-- GATE -->
+  <div class="gate" id="gateSection">
+    <div class="eyebrow">Free Resource</div>
+    <h1>The Pre-Design<br><em>Strategy Checklist</em></h1>
+    <p class="gate-desc">Five questions every founder should answer before touching a logo, a color palette, or a designer. Most skip this step. Most regret it.</p>
+
+    <div class="divider"></div>
+
+    <div class="preview">
+      <div class="preview-label">What is inside</div>
+      <div class="preview-items">
+        <div class="preview-item">
+          <span class="check">✦</span>
+          <span>12 strategic questions across 5 core brand dimensions</span>
+        </div>
+        <div class="preview-item">
+          <span class="check">✦</span>
+          <span>A prompt for each question if you feel stuck: just hover to reveal it</span>
+        </div>
+        <div class="preview-item">
+          <span class="check">✦</span>
+          <span>A live score that tells you exactly where your brand foundation stands</span>
+        </div>
+        <div class="preview-item">
+          <span class="check">✦</span>
+          <span>The exact framework MAIA uses before any design work begins</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-wrap">
+      <span class="form-label">Access the checklist</span>
+      <div class="input-group">
+        <div class="input-row">
+          <input type="text" id="firstName" placeholder="First name" />
+          <input type="text" id="company" placeholder="Company (optional)" />
+        </div>
+        <input type="email" id="email" placeholder="Your email address" />
+      </div>
+      <button class="submit-btn" onclick="handleSubmit()">Send Me the Checklist</button>
+      <p class="privacy">No spam. No pitches. Just the checklist and occasional strategic thinking from MAIA.</p>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="checklist-wrap" id="checklistWrap">
+
+    <div class="success-header">
+      <div class="eyebrow">Your Checklist</div>
+      <h2>Before you brief a<br><em>single designer.</em></h2>
+      <p>Work through each question honestly. Hover any question if you feel stuck: a prompt will appear to help you think it through. Check it off when you have a clear answer.</p>
+    </div>
+
+    <!-- 01 Audience -->
+    <div class="checklist-section" id="sec1">
+      <div class="section-number">01 / Audience</div>
+      <div class="section-title">Who is this brand for, precisely?</div>
+      <div class="section-subtitle">Not your total addressable market. Your specific person.</div>
+      <div class="check-items">
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Can I describe my ideal customer in one specific paragraph?</div>
+            <div class="stuck-prompt">Feeling stuck? Write one sentence starting with "My brand is built for the founder who..." and see where it takes you.</div>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Do I know who this brand is NOT for?</div>
+            <div class="stuck-prompt">Feeling stuck? Name one type of client you would turn down. That boundary is part of your positioning.</div>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Do I know what my audience needs to feel when they encounter my brand?</div>
+            <div class="stuck-prompt">Feeling stuck? Pick one word only: Trusted / Seen / Excited / Relieved / Aspirational: and ask yourself why that one.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 02 Positioning -->
+    <div class="checklist-section" id="sec2">
+      <div class="section-number">02 / Positioning</div>
+      <div class="section-title">What does this brand stand for that no competitor can claim?</div>
+      <div class="section-subtitle">Differentiation is not features. It is meaning.</div>
+      <div class="check-items">
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Can I name 3 competitors and say something genuinely different from all of them?</div>
+            <div class="stuck-prompt">Feeling stuck? Try finishing this: "Unlike [A], [B], and [C], we are the only brand that..." If you cannot finish it, that is the gap.</div>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Do I have a point of view that others in my space do not say out loud?</div>
+            <div class="stuck-prompt">Feeling stuck? Write one thing your industry gets wrong. Your answer to that is your point of view.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 03 Experience -->
+    <div class="checklist-section" id="sec3">
+      <div class="section-number">03 / Experience</div>
+      <div class="section-title">What does it feel like to interact with this brand?</div>
+      <div class="section-subtitle">Every touchpoint is a decision. Make it consistent.</div>
+      <div class="check-items">
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">If my brand were a person at a dinner party, how would they introduce themselves?</div>
+            <div class="stuck-prompt">Feeling stuck? Write their opening line word for word. Do not overthink it: write the first thing that comes to mind and edit from there.</div>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">What does my brand never do, say, or sound like?</div>
+            <div class="stuck-prompt">Feeling stuck? Think of a brand you find annoying or generic. What do they do that you would never do? Start there.</div>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Is the experience consistent across every touchpoint I currently have?</div>
+            <div class="stuck-prompt">Feeling stuck? Open your website, your last email, and your last social post in three tabs. Read them in order. Do they sound like the same brand?</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 04 Meaning -->
+    <div class="checklist-section" id="sec4">
+      <div class="section-number">04 / Meaning</div>
+      <div class="section-title">What would be lost if this brand disappeared tomorrow?</div>
+      <div class="section-subtitle">This question reveals whether you have a brand or just a business.</div>
+      <div class="check-items">
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Can I answer this without mentioning my product?</div>
+            <div class="stuck-prompt">Feeling stuck? Finish this sentence without naming a feature: "If we disappeared, our customers would lose access to..." The answer is your brand's meaning.</div>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Does the team, not just the founder, understand what the brand stands for?</div>
+            <div class="stuck-prompt">Feeling stuck? Ask one team member right now: "what does our brand stand for?" without coaching them first. Their answer tells you everything.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 05 Timing -->
+    <div class="checklist-section" id="sec5">
+      <div class="section-number">05 / Timing</div>
+      <div class="section-title">Why does this brand matter right now?</div>
+      <div class="section-subtitle">Context is part of positioning. The moment matters.</div>
+      <div class="check-items">
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Can I articulate why this is the right moment for this brand to exist?</div>
+            <div class="stuck-prompt">Feeling stuck? Write one sentence starting with "This is the right moment because the world just changed in this specific way..." What changed? That is your window.</div>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggleCheck(this)">
+          <div class="checkbox"><span class="checkmark">✓</span></div>
+          <div class="item-content">
+            <div class="item-question">Is my brand positioned for where my market is going, not just where it is today?</div>
+            <div class="stuck-prompt">Feeling stuck? Write where your market will be in 3 years. Then look at your current brand and ask honestly: does it point there?</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Live Score Panel -->
+    <div class="score-panel" id="scorePanel">
+      <div class="score-top">
+        <span class="score-label">Your Brand Foundation Score</span>
+        <span class="score-number" id="scoreNumber">0 / 12</span>
+      </div>
+      <div class="score-bar-track">
+        <div class="score-bar-fill" id="scoreBarFill"></div>
+      </div>
+      <div class="score-message" id="scoreMessage">
+        <span class="msg-title">Start checking off what you already know.</span>
+        Each answer you have is a foundation stone. Each gap is where MAIA begins.
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-wrap" id="ctaWrap">
+      <div class="cta-eyebrow">Ready to go deeper</div>
+      <div class="cta-title">Clarity built with someone who<br><em>believes in what you are building.</em></div>
+      <p class="cta-body">If working through this checklist showed you how much strategic clarity is still missing, that is exactly what MAIA is built to resolve. Book a free 30-minute call and we will work through your single most important brand challenge together.</p>
+      <a href="https://calendly.com/gunes-maiacreativehouse/30min" class="cta-btn" target="_blank">Book a Free 30-Min Call</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="maia-footer">
+      <span class="footer-copy">© 2026 MAIA Creative House. All rights reserved.</span>
+      <div class="footer-center">
+        <span>San Francisco</span>
+        <span class="footer-clock" id="footerClock"></span>
+      </div>
+      <div class="footer-social">
+        <a href="https://linkedin.com/company/maiacreativehouse" target="_blank" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://instagram.com/maiacreativehouse" target="_blank" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const TOTAL = 12;
+
+  const messages = [
+    {
+      min: 0, max: 0,
+      title: "Start checking off what you already know.",
+      body: "Each answer you have is a foundation stone. Each gap is where MAIA begins."
+    },
+    {
+      min: 1, max: 3,
+      title: "You are just getting started.",
+      body: "Most founders can answer 1 or 2 of these clearly. The gaps you are finding are not failures: they are the exact work that separates a business from a brand. This is where strategy begins."
+    },
+    {
+      min: 4, max: 6,
+      title: "You have a foundation. It needs strengthening.",
+      body: "You know more about your brand than most founders at your stage. But partial clarity leads to inconsistent execution. The questions you could not answer confidently are costing you in ways you may not yet see."
+    },
+    {
+      min: 7, max: 9,
+      title: "Strong foundation. Ready to build on it.",
+      body: "You have done serious thinking about your brand. The remaining gaps are likely where your growth is stalling: positioning that is not sharp enough to own a clear place in the market. This is exactly where MAIA's work gets interesting."
+    },
+    {
+      min: 10, max: 11,
+      title: "You are ready. Now execute with precision.",
+      body: "Rare. You have the strategic clarity most founders spend years chasing. The question now is not what your brand stands for: it is whether every expression of it actually reflects that. That is the work we do in the Build and Activate phases."
+    },
+    {
+      min: 12, max: 12,
+      title: "Complete clarity. Exceptional foundation.",
+      body: "You have answered every question with conviction. You are ready to brief a designer, launch a campaign, and build a brand that holds. If you want a strategic partner to pressure-test this foundation and activate it properly: that is the conversation worth having."
+    }
+  ];
+
+  function getMsg(count) {
+    return messages.find(m => count >= m.min && count <= m.max) || messages[0];
+  }
+
+  function updateScore() {
+    const checked = document.querySelectorAll('.check-item.checked').length;
+    const pct = Math.round((checked / TOTAL) * 100);
+
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = checked + ' / ' + TOTAL + ' complete';
+    document.getElementById('scoreNumber').textContent = checked + ' / ' + TOTAL;
+    document.getElementById('scoreBarFill').style.width = pct + '%';
+
+    const msg = getMsg(checked);
+    document.getElementById('scoreMessage').innerHTML =
+      '<span class="msg-title">' + msg.title + '</span>' + msg.body;
+  }
+
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    updateScore();
+  }
+
+  function handleSubmit() {
+    const email = document.getElementById('email').value.trim();
+    const firstName = document.getElementById('firstName').value.trim();
+    const company = document.getElementById('company').value.trim();
+
+    if (!email || !email.includes('@')) {
+      const el = document.getElementById('email');
+      el.style.borderColor = 'rgba(180,80,80,0.5)';
+      el.placeholder = 'Please enter a valid email';
+      setTimeout(() => { el.style.borderColor = ''; el.placeholder = 'Your email address'; }, 2000);
+      return;
+    }
+
+    // Send to Formspree — silent fail so checklist always opens
+    fetch('https://formspree.io/f/maqlodng', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        firstName: firstName,
+        company: company,
+        _subject: 'New subscriber — Pre-Design Strategy Checklist'
+      })
+    }).catch(() => {});
+
+    const gate = document.getElementById('gateSection');
+    gate.style.opacity = '0';
+    gate.style.transform = 'translateY(-20px)';
+    gate.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+
+    setTimeout(() => {
+      gate.style.display = 'none';
+      const cl = document.getElementById('checklistWrap');
+      cl.style.display = 'block';
+      setTimeout(() => { cl.style.opacity = '1'; }, 50);
+
+      document.getElementById('progressWrap').classList.add('visible');
+      document.getElementById('progressLabel').classList.add('visible');
+      updateScore();
+
+      document.querySelectorAll('.checklist-section').forEach((sec, i) => {
+        setTimeout(() => sec.classList.add('revealed'), 200 + i * 150);
+      });
+
+      setTimeout(() => {
+        document.getElementById('ctaWrap').classList.add('revealed');
+      }, 1200);
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 400);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('gateSection').style.display !== 'none') {
+      handleSubmit();
+    }
+  });
+
+  // Live SF clock
+  function updateClock() {
+    const now = new Date();
+    const sf = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Los_Angeles',
+      hour: '2-digit', minute: '2-digit',
+      hour12: false
+    }).format(now);
+    const el = document.getElementById('footerClock');
+    if (el) el.textContent = sf;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
